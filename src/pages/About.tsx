@@ -188,6 +188,60 @@ const About: React.FC = () => {
           </div>
         </div>
       </section>
+
+      {/* Online presence & Press Section */}
+      <section className="py-16 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4" style={{ fontFamily: 'Montserrat' }}>
+              Online presence & Press
+            </h2>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto" style={{ fontFamily: 'Roboto' }}>
+              Dungo Energy Solutions has been featured and listed on several platforms. Find our profiles,
+              mentions and press coverage here.
+            </p>
+          </div>
+
+          <div className="bg-white rounded-lg shadow p-8 lg:p-12">
+            <ul className="space-y-4 text-left max-w-3xl mx-auto" style={{ fontFamily: 'Roboto' }}>
+              <li>
+                <a href="https://www.f6s.com/dungo" target="_blank" rel="noopener noreferrer" className="text-emerald-700 font-semibold">
+                  F6S — Dungo profile
+                </a>
+                <p className="text-sm text-gray-600">Startup profile and funding/networking information.</p>
+              </li>
+
+              <li>
+                <a href="https://twitter.com/intent/tweet?text=Dungo+Energy+Solutions" target="_blank" rel="noopener noreferrer" className="text-emerald-700 font-semibold">
+                  Twitter — social mentions
+                </a>
+                <p className="text-sm text-gray-600">Recent social posts and community engagement on Twitter.</p>
+              </li>
+
+              <li>
+                <a href="https://www.startupranking.org/profile/dungo-energy" target="_blank" rel="noopener noreferrer" className="text-emerald-700 font-semibold">
+                  StartupRanking — organization ranking
+                </a>
+                <p className="text-sm text-gray-600">Independent ranking and profile information.</p>
+              </li>
+
+              <li>
+                <a href="https://www.fairobserver.com/tag/dungo-energy/" target="_blank" rel="noopener noreferrer" className="text-emerald-700 font-semibold">
+                  Fair Observer — press mentions
+                </a>
+                <p className="text-sm text-gray-600">Editorial coverage and articles mentioning Dungo Energy.</p>
+              </li>
+
+              <li>
+                <a href="https://www.sun-connect.org/dungo-energy" target="_blank" rel="noopener noreferrer" className="text-emerald-700 font-semibold">
+                  Sun Connect — project listing
+                </a>
+                <p className="text-sm text-gray-600">Project listings and partner network entries.</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };
