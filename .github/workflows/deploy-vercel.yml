@@ -25,13 +25,8 @@ jobs:
         run: |
           # Install Vercel CLI and deploy the built `dist` folder to production
           npm i -g vercel
-          # Build command with optional project/org flags so the CLI doesn't prompt
-          CMD=(npx vercel --prod --yes --token "$VERCEL_TOKEN")
-          if [ -n "$VERCEL_PROJECT_ID" ]; then
-            CMD+=(--project "$VERCEL_PROJECT_ID")
-          fi
-          if [ -n "$VERCEL_ORG_ID" ]; then
-            CMD+=(--scope "$VERCEL_ORG_ID")
-          fi
+          # Deploy the built `dist` folder directly. Avoid passing unsupported
+          # CLI options (older/newer CLI versions may not accept --project/--scope).
+          CMD=(npx vercel --prod --yes --token "$VERCEL_TOKEN" ./dist)
           echo "Running: ${CMD[*]}"
           "${CMD[@]}"
