@@ -11,7 +11,7 @@ const blogPosts = [
     author: 'Dungo Team',
     category: 'Community Impact',
     readTime: '5 min read',
-    image: 'bg-gradient-to-br from-amber-300 to-orange-400'
+    image: '/blog-main.png'
   },
   {
     id: 2,
@@ -22,7 +22,7 @@ const blogPosts = [
     author: 'Dungo Team',
     category: 'Environmental Impact',
     readTime: '4 min read',
-    image: 'bg-gradient-to-br from-green-300 to-emerald-400'
+  image: '/impact-01.jpg'
   },
   {
     id: 3,
@@ -33,7 +33,7 @@ const blogPosts = [
     author: 'Dungo Team',
     category: 'Community Development',
     readTime: '6 min read',
-    image: 'bg-gradient-to-br from-blue-300 to-indigo-400'
+  image: '/projects-outside-3.jpg'
   }
 ];
   // Blog page images
@@ -46,7 +46,7 @@ const Blog: React.FC = () => {
   return (
     <div className="pt-16">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-emerald-50 to-white py-20">
+  <section className="bg-gradient-to-br from-emerald-50 to-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-4xl mx-auto">
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6" style={{ fontFamily: 'Montserrat' }}>
@@ -68,10 +68,26 @@ const Blog: React.FC = () => {
       {/* Blog Posts */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="mb-10">
+            {/* Featured post */}
+            <article className="rounded-lg overflow-hidden shadow-lg grid md:grid-cols-3 gap-6">
+              <img src="/blog-main.png" alt="Featured" className="w-full h-64 object-cover md:col-span-1 rounded-t-lg md:rounded-l-lg" />
+              <div className="p-6 md:col-span-2 bg-white">
+                <div className="flex items-center text-sm text-gray-500 mb-3">
+                  <span className="bg-emerald-100 text-emerald-700 px-2 py-1 rounded text-xs font-semibold mr-3">Community Impact</span>
+                  <span>6 min read</span>
+                </div>
+                <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3" style={{ fontFamily: 'Montserrat' }}>Lighting Up Rural Ethiopia – One Lamp at a Time</h2>
+                <p className="text-gray-600 mb-4" style={{ fontFamily: 'Roboto' }}>A look at the Dungo Solar Lamp Project and how it transformed lives in remote communities by providing safe, reliable light and new opportunities for education and income generation.</p>
+                <Link to="/blog/lighting-up-rural-ethiopia" className="inline-flex items-center text-emerald-700 font-semibold hover:text-emerald-800 transition-colors duration-200" style={{ fontFamily: 'Poppins' }}>Read Full Story <ArrowRight className="ml-1 h-4 w-4" /></Link>
+              </div>
+            </article>
+          </div>
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {blogPosts.map((post) => (
               <article key={post.id} className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
-                <div className={`h-48 ${post.image}`}></div>
+                <img src={post.image} alt={post.title} className="w-full h-48 object-cover" />
                 <div className="p-6">
                   <div className="flex items-center text-sm text-gray-500 mb-3" style={{ fontFamily: 'Roboto' }}>
                     <span className="bg-emerald-100 text-emerald-700 px-2 py-1 rounded text-xs font-semibold mr-3">
