@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, Lightbulb, Users, Leaf, CheckCircle } from 'lucide-react';
+import { ArrowRight, Lightbulb, Users, Leaf } from 'lucide-react';
 
 const Home = () => {
   return (
@@ -155,7 +155,7 @@ const Home = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Blog Post 1 */}
             <article className="bg-gray-50 rounded-lg overflow-hidden hover:shadow-lg transition-shadow duration-300">
-              <div className="h-48 bg-gradient-to-br from-amber-300 to-orange-400"></div>
+              <img src="/blog-main.png" alt="Lighting Up Rural Ethiopia" className="w-full h-48 object-cover" />
               <div className="p-6">
                 <h3 className="text-lg font-bold text-gray-900 mb-2" style={{ fontFamily: 'Montserrat' }}>
                   Lighting Up Rural Ethiopia – One Lamp at a Time
@@ -176,7 +176,7 @@ const Home = () => {
 
             {/* Blog Post 2 */}
             <article className="bg-gray-50 rounded-lg overflow-hidden hover:shadow-lg transition-shadow duration-300">
-              <div className="h-48 bg-gradient-to-br from-green-300 to-emerald-400"></div>
+              <img src="/impact-01.jpg" alt="Why Solar Energy Matters for Climate Action" className="w-full h-48 object-cover" />
               <div className="p-6">
 
                     {/* Home Slider Gallery */}
@@ -206,7 +206,7 @@ const Home = () => {
 
             {/* Blog Post 3 */}
             <article className="bg-gray-50 rounded-lg overflow-hidden hover:shadow-lg transition-shadow duration-300">
-              <div className="h-48 bg-gradient-to-br from-blue-300 to-indigo-400"></div>
+              <img src="/projects-outside-3.jpg" alt="Building Stronger Communities" className="w-full h-48 object-cover" />
               <div className="p-6">
                 <h3 className="text-lg font-bold text-gray-900 mb-2" style={{ fontFamily: 'Montserrat' }}>
                   Building Stronger Communities Through Energy Access
