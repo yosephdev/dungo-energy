@@ -223,7 +223,8 @@ function renderContentToHtml(content: string) {
     // Headings that are a whole block wrapped in **text**
     const headingMatch = block.match(/^\*\*(.+?)\*\*$/s);
     if (headingMatch) {
-      return `<h3 class="text-xl font-semibold text-gray-900" style="font-family: Montserrat;">${headingMatch[1]}</h3>`;
+      const id = slugify(headingMatch[1]);
+      return `<h3 id="${id}" class="text-xl font-semibold text-gray-900" style="font-family: Montserrat;">${headingMatch[1]}</h3>`;
     }
 
     // Inline bold **text**
@@ -239,6 +240,23 @@ function renderContentToHtml(content: string) {
   }).join('');
 
   return html;
+}
+
+function slugify(text: string) {
+  return text
+    .toString()
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
+function generateTOC(content: string) {
+  const headings = Array.from(content.matchAll(/\*\*(.+?)\*\*/g)).map(m => ({
+    text: m[1],
+    id: slugify(m[1])
+  }));
+  return headings;
 }
 
 const BlogPost: React.FC = () => {
@@ -305,20 +323,38 @@ const BlogPost: React.FC = () => {
           </div>
 
           {/* Featured Image */}
-          <div className={`${post.image} rounded-lg h-64 md:h-80 mb-8`}></div>
+          <div className="rounded-lg overflow-hidden mb-8">
+            <img src={post.image} alt={post.title} className="w-full h-64 md:h-80 object-cover" />
+          </div>
         </div>
       </section>
 
-      {/* Content */}
+      {/* Content with optional TOC */}
       <section className="py-12 bg-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <article className="prose prose-lg max-w-none">
-            <div 
-              className="text-gray-700 leading-relaxed" 
-              style={{ fontFamily: 'Roboto' }}
-              dangerouslySetInnerHTML={{ __html: renderContentToHtml(post.content) }}
-            />
-          </article>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+            <div className="lg:col-span-3">
+              <article className="prose prose-lg max-w-none">
+                <div 
+                  className="text-gray-700 leading-relaxed" 
+                  style={{ fontFamily: 'Roboto' }}
+                  dangerouslySetInnerHTML={{ __html: renderContentToHtml(post.content) }}
+                />
+              </article>
+            </div>
+            <aside className="hidden lg:block lg:col-span-1">
+              <div className="sticky top-28 bg-white border border-gray-100 rounded-md p-4">
+                <h4 className="text-sm font-semibold text-gray-900 mb-3">On this page</h4>
+                <ul className="text-sm space-y-2">
+                  {generateTOC(post.content).map(h => (
+                    <li key={h.id}>
+                      <a className="text-emerald-700 hover:underline" href={`#${h.id}`}>{h.text}</a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </aside>
+          </div>
         </div>
       </section>
 
