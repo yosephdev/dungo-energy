@@ -1,0 +1,6 @@
+# CODEOWNERS for Dungo Energy
+# Format: <pattern> <owner>
+
+/* @yosephdev
+src/ @yosephdev
+public/ @yosephdev
