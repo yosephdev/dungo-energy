@@ -224,6 +224,28 @@ const Projects: React.FC = () => {
                 Impact: Economic empowerment
               </div>
             </div>
+
+            {/* Story 4 - Dungo Solar Lamp Project: Abebe Doyo kebele */}
+            <div className="bg-white rounded-lg shadow-md p-6">
+              <div className="mb-4">
+                <img src="/P1190018k.jpg" alt="Dungo Solar Lamp - Abebe Doyo" className="w-full h-40 object-cover rounded-md mb-4" />
+                <div className="w-12 h-12 bg-emerald-100 rounded-full flex items-center justify-center mb-3">
+                  <Lightbulb className="h-6 w-6 text-amber-600" />
+                </div>
+                <h3 className="text-lg font-bold text-gray-900" style={{ fontFamily: 'Montserrat' }}>
+                  Dungo Solar Lamp - Abebe Doyo kebele
+                </h3>
+                <p className="text-sm text-gray-500" style={{ fontFamily: 'Roboto' }}>Abebe Doyo kebele, near Ambo Town — Oromia Region</p>
+              </div>
+              <p className="text-gray-600 mb-4" style={{ fontFamily: 'Roboto' }}>
+                The Dungo Solar Lamp project supported households in Abebe Doyo kebele with durable
+                portable solar lamps. Residents reported improved study time for children and safer
+                homes after sunset.
+              </p>
+              <div className="text-emerald-700 font-semibold text-sm" style={{ fontFamily: 'Poppins' }}>
+                Impact: Lighting for households in Abebe Doyo kebele
+              </div>
+            </div>
           </div>
         </div>
       </section>
