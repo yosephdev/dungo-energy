@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, Calendar, User, Share2 } from 'lucide-react';
 
@@ -46,7 +46,7 @@ The success of this project has laid the foundation for our expanded vision of c
     author: 'Dungo Team',
     category: 'Community Impact',
     readTime: '5 min read',
-    image: 'bg-gradient-to-br from-amber-300 to-orange-400'
+  image: '/blog-main.png'
   },
   'solar-energy-climate-action': {
     title: 'Why Solar Energy Matters for Climate Action',
@@ -113,7 +113,7 @@ Our commitment to expanding renewable energy access represents both a local deve
     author: 'Dungo Team',
     category: 'Environmental Impact',
     readTime: '4 min read',
-    image: 'bg-gradient-to-br from-green-300 to-emerald-400'
+  image: '/impact-01.jpg'
   },
   'building-stronger-communities': {
     title: 'Building Stronger Communities Through Energy Access',
@@ -212,9 +212,34 @@ Our experience demonstrates that sustainable development happens most effectivel
     author: 'Dungo Team',
     category: 'Community Development',
     readTime: '6 min read',
-    image: 'bg-gradient-to-br from-blue-300 to-indigo-400'
+    image: '/projects-outside-3.jpg'
   }
 };
+
+function renderContentToHtml(content: string) {
+  // Split on double newlines into blocks
+  const blocks = content.split(/\n\s*\n/).map(b => b.trim()).filter(Boolean);
+  const html = blocks.map(block => {
+    // Headings that are a whole block wrapped in **text**
+    const headingMatch = block.match(/^\*\*(.+?)\*\*$/s);
+    if (headingMatch) {
+      return `<h3 class="text-xl font-semibold text-gray-900" style="font-family: Montserrat;">${headingMatch[1]}</h3>`;
+    }
+
+    // Inline bold **text**
+    const withBold = block.replace(/\*\*(.*?)\*\*/g, '<strong style="font-family: Montserrat; font-weight:600; color:#1f2937;">$1</strong>');
+
+    // Convert simple bullet lines starting with - or • into <li>
+    if (/^(?:[-•]\s+)/m.test(withBold)) {
+      const items = withBold.split(/\n/).map(l => l.replace(/^[-•]\s+/, '').trim()).filter(Boolean);
+      return `<ul class="list-disc pl-6 space-y-2 text-gray-700" style="font-family: Roboto;">${items.map(i => `<li>${i}</li>`).join('')}</ul>`;
+    }
+
+    return `<p class="text-gray-700 mb-4" style="font-family: Roboto;">${withBold}</p>`;
+  }).join('');
+
+  return html;
+}
 
 const BlogPost: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -291,9 +316,7 @@ const BlogPost: React.FC = () => {
             <div 
               className="text-gray-700 leading-relaxed" 
               style={{ fontFamily: 'Roboto' }}
-              dangerouslySetInnerHTML={{ 
-                __html: post.content.replace(/\*\*(.*?)\*\*/g, '<strong style="font-family: Montserrat; font-weight: 600; color: #1f2937;">$1</strong>')
-              }} 
+              dangerouslySetInnerHTML={{ __html: renderContentToHtml(post.content) }}
             />
           </article>
         </div>
